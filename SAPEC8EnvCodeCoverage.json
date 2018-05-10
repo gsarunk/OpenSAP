@@ -46,7 +46,7 @@
     },
     {
       "key": "package",
-      "value": "ZABAPUNIT",
+      "value": "ZOPENSAP",
       "enabled": true,
       "type": "text"
     },
@@ -82,7 +82,7 @@
     },
     {
       "key": "coverage_min",
-      "value": "80",
+      "value": "30",
       "enabled": true,
       "type": "text"
     },
