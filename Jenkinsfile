@@ -10,7 +10,7 @@ pipeline{
         }
 	    stage('CI-Code Review'){
 	    steps{
-		bat "newman run ATCCheck.json --environment SAPEC8EnvCodeCoverage.json"
+		bat "newman run ATCCheckLegacy.json --environment SAPEC8EnvCodeCoverage.json"
 	    }
 	}
 	
