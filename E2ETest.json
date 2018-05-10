@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "e1edef38-45ce-4d04-96f8-9bd56023aafe",
+		"name": "E2E Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "IntegrationTest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cc7e928b-3019-40b9-8122-2d1044655f81",
+						"type": "text/javascript",
+						"exec": [
+							"if (responseCode.code === 200) {",
+							"    var jsonObject = JSON.parse(responseBody);",
+							"    var TestObject = jsonObject.d.ObjName;",
+							"    var TestSystem = jsonObject.d.Testsystem;",
+							"    tests[\"End To End Test \" + TestObject + \" in System \" + TestSystem + ' is Succesful' ] = true;",
+							"",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://52.203.237.76:8000/sap/opu/odata/SAP/ZSOL_SCRIPT_ODATA_SRV/ItFinalSet('{{TestScript}}')/?$format=json",
+					"protocol": "http",
+					"host": [
+						"52",
+						"203",
+						"237",
+						"76"
+					],
+					"port": "8000",
+					"path": [
+						"sap",
+						"opu",
+						"odata",
+						"SAP",
+						"ZSOL_SCRIPT_ODATA_SRV",
+						"ItFinalSet('{{TestScript}}')",
+						""
+					],
+					"query": [
+						{
+							"key": "$format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "50d0a9d2-a3a0-4cb8-823c-009264f22518",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "995386d5-fedd-4865-be5c-8654e4bccbbb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
