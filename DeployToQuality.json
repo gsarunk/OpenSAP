@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "9f62fc74-4779-465d-9136-7fdb06d047a5",
+		"name": "CD-DeployToQuality",
+		"description": "Continuous Integration on EC8 ABAP Unit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ImportTansport",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4432eaf4-ae5c-48e8-be86-f916d2c432a1",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"if (responseCode.code === 200) {",
+							"    var jsonObject = JSON.parse(responseBody);",
+							"    var value = jsonObject.d.QA_IMPORTED;",
+							"    tests[\"Successfully deployed To QA\"] = true;",
+							"",
+							"}"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CSRF-Token",
+						"value": "Fetch"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{protocol}}://{{host}}:{{port}}/sap/opu/odata/SAP/ZSOLMAN_STATUS_TR_SRV_01/EReturnSet('{{transport}}')/?$format=json",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"sap",
+						"opu",
+						"odata",
+						"SAP",
+						"ZSOLMAN_STATUS_TR_SRV_01",
+						"EReturnSet('{{transport}}')",
+						""
+					],
+					"query": [
+						{
+							"key": "$format",
+							"value": "json"
+						}
+					]
+				},
+				"description": "Deploy Transport to Quality"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{username}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "483354c8-8a5b-4249-824c-9e90af90efb6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3a2832ef-7ad1-4fa1-bf2c-3c156f7251c2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "0c9e4a28-f19b-42db-bfef-21cd7a048f06",
+			"key": "host",
+			"value": "http://52.87.34.126:8000",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "036bb1fe-7ed2-4938-9d06-a548ad1b4c24",
+			"key": "username",
+			"value": "arung",
+			"type": "string",
+			"description": ""
+		},
+		{
+			"id": "7a25e738-bb32-49df-89e9-5affc60da2a0",
+			"key": "client",
+			"value": "800",
+			"type": "string",
+			"disabled": true,
+			"description": ""
+		}
+	]
+}
