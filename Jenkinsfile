@@ -4,25 +4,25 @@ pipeline{
     stages{
         stage('CI-Unit Test/Coverage'){
             steps {
-                bat "newman run CodeCoverage.json --environment SAPEC8EnvCodeCoverage.json"
+                sh "newman run CodeCoverage.json --environment SAPEC8EnvCodeCoverage.json"
 		   
             }
         }
 	    stage('CI-Code Review'){
 	    steps{
-		bat "newman run ATCCheckLegacy.json --environment SAPEC8EnvCodeCoverage.json"
+		sh "newman run ATCCheckLegacy.json --environment SAPEC8EnvCodeCoverage.json"
 	    }
 	}
 	
 	stage('CD-Deploy To QA'){
 	    steps{
-		bat "newman run DeployToQuality.json --environment SAPEC8EnvCodeCoverage.json"
+		sh "newman run DeployToQuality.json --environment SAPEC8EnvCodeCoverage.json"
 	    }
 	}
   
   stage('CI-End To End Test'){
 	    steps{
-		bat "newman run E2ETest.json --environment SAPEC8EnvCodeCoverage.json"
+		sh "newman run E2ETest.json --environment SAPEC8EnvCodeCoverage.json"
 	    }
 	}
 	}
